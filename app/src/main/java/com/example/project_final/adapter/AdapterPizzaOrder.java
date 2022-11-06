@@ -34,38 +34,38 @@ public class AdapterPizzaOrder extends RecyclerView.Adapter<AdapterPizzaOrder.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        /*Country item=this.countries.get(position);
-        viewHolder.getName().setText(item.getName());
-        viewHolder.getCity().setText(item.getCity()+"");
-        viewHolder.getEurope().setChecked(item.isEurope());
-    */}
+        PizzaOrder item=this.pizzaOrders.get(position);
+        viewHolder.getClientsName().setText(item.getClientsName());
+        viewHolder.getDeliveryCode().setText(item.getDelivaryCode()+"");
+        viewHolder.getHasBeenDelivered().setChecked(item.isHasBeenDelivered());
+    }
 
     @Override
     public int getItemCount() {
         return this.pizzaOrders.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private final TextView name;
-        private final TextView city;
-        private final CheckBox europe;
+        private final TextView clientsName;
+        private final TextView deliveryCode;
+        private final CheckBox hasBeenDelivered;
 
         public ViewHolder(View view){
             super(view);
-            name=(TextView) view.findViewById(R.id.txtViwClientsName);
-            city=(TextView) view.findViewById(R.id.txtViwDeliveryCode);
-            europe=(CheckBox) view.findViewById(R.id.chkBoxHasBeenDelivered);
+            clientsName=(TextView) view.findViewById(R.id.txtViwClientsName);
+            deliveryCode =(TextView) view.findViewById(R.id.txtViwDeliveryCode);
+            hasBeenDelivered =(CheckBox) view.findViewById(R.id.chkBoxHasBeenDelivered);
         }
 
-        public TextView getName() {
-            return name;
+        public TextView getClientsName() {
+            return clientsName;
         }
 
-        public TextView getCity() {
-            return city;
+        public TextView getDeliveryCode() {
+            return deliveryCode;
         }
 
-        public CheckBox getEurope() {
-            return europe;
+        public CheckBox getHasBeenDelivered() {
+            return hasBeenDelivered;
         }
     }
     public static class EmptyViewHolder extends RecyclerView.ViewHolder{

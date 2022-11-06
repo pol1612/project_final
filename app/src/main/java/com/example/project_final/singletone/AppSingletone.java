@@ -30,6 +30,7 @@ public class AppSingletone {
         po.setDelivaryCode("snjkwde123");
         po.setHasBeenDelivered(true);
         pizzaOrderArrayList.add(po);
+        pizzaOrderArrayList.add(po);
     }
 
 
