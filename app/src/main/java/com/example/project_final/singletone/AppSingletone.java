@@ -25,6 +25,11 @@ public class AppSingletone {
         //Constructor Singleton
 
         this.pizzaOrderArrayList = new ArrayList<>();
+        PizzaOrder po=new PizzaOrder();
+        po.setClientsName("pol");
+        po.setDelivaryCode("snjkwde123");
+        po.setHasBeenDelivered(true);
+        pizzaOrderArrayList.add(po);
     }
 
 

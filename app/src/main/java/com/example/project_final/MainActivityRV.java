@@ -18,7 +18,7 @@ public class MainActivityRV extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_rv);
 
         this.recyclerView = findViewById(R.id.recycleView);
 
