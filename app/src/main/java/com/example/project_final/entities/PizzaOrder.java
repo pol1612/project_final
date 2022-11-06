@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class PizzaOrder implements Serializable {
     private int units;
     private int price;
-    private String clientName;
+    private String clientsName;
     private String delivaryCode;
     private String deliveryDate;
     private String destination;
@@ -38,7 +38,7 @@ public class PizzaOrder implements Serializable {
         hasMincedMeat=false;
         hasOregano=false;
         hasBlackPepper=false;
-        clientName="";
+        clientsName ="";
         delivaryCode="";
         hasBeenDelivered=false;
     }
@@ -179,12 +179,12 @@ public class PizzaOrder implements Serializable {
         this.price = price;
     }
 
-    public String getClientName() {
-        return clientName;
+    public String getClientsName() {
+        return clientsName;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setClientsName(String clientsName) {
+        this.clientsName = clientsName;
     }
 
     public String getDelivaryCode() {

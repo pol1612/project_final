@@ -1,12 +1,13 @@
 package com.example.project_final;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_final.adapter.AdapterCountry;
+import com.example.project_final.adapter.AdapterPizzaOrder;
 import com.example.project_final.singletone.AppSingletone;
 
 public class MainActivityRV extends AppCompatActivity {
@@ -40,8 +41,14 @@ public class MainActivityRV extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        AdapterCountry adapterCountry=new AdapterCountry(AppSingletone.getInstance().getPizzaOrderArrayList());
+        AdapterPizzaOrder adapterCountry=new AdapterPizzaOrder(AppSingletone.getInstance().getPizzaOrderArrayList());
         recyclerView.setAdapter(adapterCountry);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_rv, menu);
+        return true;
     }
 }

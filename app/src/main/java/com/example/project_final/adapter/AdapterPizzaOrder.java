@@ -10,15 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_final.R;
-import com.example.project_final.entities.Country;
 import com.example.project_final.entities.PizzaOrder;
+import com.example.project_final.singletone.AppSingletone;
 
 import java.util.ArrayList;
 
-public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.ViewHolder> {
-    private ArrayList<PizzaOrder> pizzaOrders;
+public class AdapterPizzaOrder extends RecyclerView.Adapter<AdapterPizzaOrder.ViewHolder> {
+    private ArrayList<PizzaOrder> pizzaOrders= AppSingletone.getInstance().getPizzaOrderArrayList();
 
-    public AdapterCountry(ArrayList<PizzaOrder> pizzaOrders) {
+    public AdapterPizzaOrder(ArrayList<PizzaOrder> pizzaOrders) {
         this.pizzaOrders = pizzaOrders;
     }
 
@@ -26,7 +26,7 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
             View view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_country, viewGroup, false);
+                    .inflate(R.layout.item_pizza_order, viewGroup, false);
 
             return new ViewHolder(view);
 
@@ -51,9 +51,9 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.ViewHold
 
         public ViewHolder(View view){
             super(view);
-            name=(TextView) view.findViewById(R.id.name);
-            city=(TextView) view.findViewById(R.id.city);
-            europe=(CheckBox) view.findViewById(R.id.europe);
+            name=(TextView) view.findViewById(R.id.txtViwClientsName);
+            city=(TextView) view.findViewById(R.id.txtViwDeliveryCode);
+            europe=(CheckBox) view.findViewById(R.id.chkBoxHasBeenDelivered);
         }
 
         public TextView getName() {
