@@ -60,7 +60,7 @@ public class Detail1Activity extends AppCompatActivity {
         if(id==R.id.next){
             PizzaOrder pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
             pizzaOrder.setClientsName(txtEdClientName.getText().toString());
-            pizzaOrder.setPrice(Integer.parseInt(txtEdNumPizzaOrderPrice.getText().toString()));
+            pizzaOrder.setPrice(Float.parseFloat(txtEdNumPizzaOrderPrice.getText().toString()));
             pizzaOrder.setDeliveryCode(txtEdPasswordPizzaOrderCode.getText().toString());
             pizzaOrder.setDeliveryDate(datePickDeliveryDate.getDayOfMonth()+"/"+datePickDeliveryDate.getMonth()+"/"+datePickDeliveryDate.getYear());
             pizzaOrder.setDestination(txtEdAddress.getText().toString());

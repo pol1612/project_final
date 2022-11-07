@@ -1,5 +1,6 @@
 package com.example.project_final.singletone;
 
+import com.example.project_final.adapter.PizzaOrderAdapter;
 import com.example.project_final.entities.PizzaOrder;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class AppSingletone {
     private ArrayList<PizzaOrder> pizzaOrderArrayList;
     private int currentPosition;
     private PizzaOrder pizzaOrder;
+    private PizzaOrderAdapter pizzaOrderAdapter;
 
     private static class SingletonInstance {
         private static AppSingletone INSTANCE = new AppSingletone();
@@ -22,15 +24,8 @@ public class AppSingletone {
 
     private AppSingletone() {
         //Constructor Singleton
-
         this.pizzaOrderArrayList = new ArrayList<>();
-        //TODO: delete this
-        PizzaOrder po=new PizzaOrder();
-        po.setClientsName("pol");
-        po.setDeliveryCode("snjkwde123");
-        po.setHasBeenDelivered(true);
-        pizzaOrderArrayList.add(po);
-        pizzaOrderArrayList.add(po);
+        this.pizzaOrderAdapter=new PizzaOrderAdapter(pizzaOrderArrayList);
     }
 
 
@@ -54,5 +49,13 @@ public class AppSingletone {
 
     public void setPizzaOrder(PizzaOrder pizzaOrder) {
         this.pizzaOrder = pizzaOrder;
+    }
+
+    public PizzaOrderAdapter getPizzaOrderAdapter() {
+        return pizzaOrderAdapter;
+    }
+
+    public void setPizzaOrderAdapter(PizzaOrderAdapter pizzaOrderAdapter) {
+        this.pizzaOrderAdapter = pizzaOrderAdapter;
     }
 }

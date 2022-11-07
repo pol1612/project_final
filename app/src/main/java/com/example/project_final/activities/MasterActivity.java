@@ -23,7 +23,6 @@ public class MasterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("polñplñ`p\n\n\nok");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
 
@@ -33,8 +32,7 @@ public class MasterActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList());
-        recyclerView.setAdapter(pizzaOrderAdapter);
+        recyclerView.setAdapter(AppSingletone.getInstance().getPizzaOrderAdapter());
     }
 
     @Override
@@ -50,8 +48,7 @@ public class MasterActivity extends AppCompatActivity {
             AppSingletone.getInstance().setCurrentPosition(-1);
             AppSingletone.getInstance().setPizzaOrder(new PizzaOrder());
             Intent i = new Intent(MasterActivity.this, Detail1Activity.class);
-            startActivityForResult(i,10);
-            System.out.println(AppSingletone.getInstance().getPizzaOrderArrayList().size());
+            startActivityForResult(i,1);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
@@ -61,8 +58,5 @@ public class MasterActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(AppSingletone.getInstance().getPizzaOrderArrayList().size());
-        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList());
-        recyclerView.setAdapter(pizzaOrderAdapter);
     }
 }

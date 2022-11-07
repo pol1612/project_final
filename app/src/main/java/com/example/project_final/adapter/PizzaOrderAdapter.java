@@ -54,6 +54,9 @@ public class PizzaOrderAdapter extends RecyclerView.Adapter<PizzaOrderAdapter.Vi
             clientsName=(TextView) view.findViewById(R.id.txtViwClientsName);
             deliveryCode =(TextView) view.findViewById(R.id.txtViwDeliveryCode);
             hasBeenDelivered =(CheckBox) view.findViewById(R.id.chkBoxHasBeenDelivered);
+            /*view.setOnClickListener(
+                    null
+            );*/
         }
 
         public TextView getClientsName() {

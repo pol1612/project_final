@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class PizzaOrder implements Serializable {
     //detail1 attributes
-    private int price;
+    private float price;
     private String clientsName;
     private String deliveryCode;
     private String deliveryDate;
@@ -164,11 +164,11 @@ public class PizzaOrder implements Serializable {
         this.hasBlackPepper = hasBlackPepper;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
