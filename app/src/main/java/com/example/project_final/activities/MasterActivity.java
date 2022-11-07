@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ public class MasterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("polñplñ`p\n\n\nok");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
 
@@ -31,9 +33,8 @@ public class MasterActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        PizzaOrderAdapter adapterCountry=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList());
-        recyclerView.setAdapter(adapterCountry);
-
+        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList());
+        recyclerView.setAdapter(pizzaOrderAdapter);
     }
 
     @Override
@@ -49,10 +50,19 @@ public class MasterActivity extends AppCompatActivity {
             AppSingletone.getInstance().setCurrentPosition(-1);
             AppSingletone.getInstance().setPizzaOrder(new PizzaOrder());
             Intent i = new Intent(MasterActivity.this, Detail1Activity.class);
-            startActivity(i);
+            startActivityForResult(i,10);
+            System.out.println(AppSingletone.getInstance().getPizzaOrderArrayList().size());
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println(AppSingletone.getInstance().getPizzaOrderArrayList().size());
+        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList());
+        recyclerView.setAdapter(pizzaOrderAdapter);
     }
 }

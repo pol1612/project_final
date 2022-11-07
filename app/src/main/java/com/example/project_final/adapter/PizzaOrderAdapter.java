@@ -16,7 +16,7 @@ import com.example.project_final.singletone.AppSingletone;
 import java.util.ArrayList;
 
 public class PizzaOrderAdapter extends RecyclerView.Adapter<PizzaOrderAdapter.ViewHolder> {
-    private ArrayList<PizzaOrder> pizzaOrders= AppSingletone.getInstance().getPizzaOrderArrayList();
+    private ArrayList<PizzaOrder> pizzaOrders;
 
     public PizzaOrderAdapter(ArrayList<PizzaOrder> pizzaOrders) {
         this.pizzaOrders = pizzaOrders;

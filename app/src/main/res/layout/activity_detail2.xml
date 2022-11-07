@@ -1,6 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtViwPizzaOrderBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="140dp"
+        android:text="Pizza order's base:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rdGrBase"
+        android:layout_width="73dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="-30dp"
+        app:layout_constraintStart_toEndOf="@+id/txtViwPizzaOrderBase"
+        app:layout_constraintTop_toTopOf="@+id/txtViwPizzaOrderBase">
+
+        <RadioButton
+            android:id="@+id/rdBtnFlour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Flour" />
+
+        <RadioButton
+            android:id="@+id/rdBtnYeast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yeast" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/chBxSpicyOil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Spicy oil"
+        app:layout_constraintStart_toStartOf="@+id/txtViwPizzaOrderBase"
+        app:layout_constraintTop_toBottomOf="@+id/txtViwPizzaOrderBase" />
+
+    <CheckBox
+        android:id="@+id/chBxBlackPepper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Black Pepper"
+        app:layout_constraintStart_toStartOf="@+id/chBxOregano"
+        app:layout_constraintTop_toBottomOf="@+id/chBxOregano" />
+
+    <CheckBox
+        android:id="@+id/chBxSwissCheese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Swiss Cheese"
+        app:layout_constraintStart_toStartOf="@+id/chBxRoquefort"
+        app:layout_constraintTop_toBottomOf="@+id/chBxRoquefort" />
+
+    <CheckBox
+        android:id="@+id/chBxOregano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Oregano"
+        app:layout_constraintStart_toStartOf="@+id/chBxMincedMeat"
+        app:layout_constraintTop_toBottomOf="@+id/chBxMincedMeat" />
+
+    <CheckBox
+        android:id="@+id/chBxRoquefort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Roquefort"
+        app:layout_constraintStart_toStartOf="@+id/chBxGouda"
+        app:layout_constraintTop_toBottomOf="@+id/chBxGouda" />
+
+    <CheckBox
+        android:id="@+id/chBxMincedMeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Minced Meat"
+        app:layout_constraintStart_toStartOf="@+id/chBxBacon"
+        app:layout_constraintTop_toBottomOf="@+id/chBxBacon" />
+
+    <CheckBox
+        android:id="@+id/chBxGouda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Gouda"
+        app:layout_constraintStart_toStartOf="@+id/chBxMozzarella"
+        app:layout_constraintTop_toBottomOf="@+id/chBxMozzarella" />
+
+    <CheckBox
+        android:id="@+id/chBxBacon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Bacon"
+        app:layout_constraintStart_toStartOf="@+id/chBxHam"
+        app:layout_constraintTop_toBottomOf="@+id/chBxHam" />
+
+    <CheckBox
+        android:id="@+id/chBxHam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Ham"
+        app:layout_constraintStart_toStartOf="@+id/rdGrBase"
+        app:layout_constraintTop_toBottomOf="@+id/rdGrBase" />
+
+    <CheckBox
+        android:id="@+id/chBxMozzarella"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Mozzarella"
+        app:layout_constraintStart_toStartOf="@+id/chBxTomatoSauce"
+        app:layout_constraintTop_toBottomOf="@+id/chBxTomatoSauce" />
+
+    <CheckBox
+        android:id="@+id/chBxTomatoSauce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Tomato Sauce"
+        app:layout_constraintStart_toStartOf="@+id/chBxSpicyOil"
+        app:layout_constraintTop_toBottomOf="@+id/chBxSpicyOil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

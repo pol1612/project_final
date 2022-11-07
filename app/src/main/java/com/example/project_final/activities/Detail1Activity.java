@@ -68,9 +68,10 @@ public class Detail1Activity extends AppCompatActivity {
             pizzaOrder.setSize(Integer.parseInt(spnPizzaOrderSize.getSelectedItem().toString()));
             Intent i = new Intent(Detail1Activity.this, Detail2Activity.class);
             startActivity(i);
+            finish();
             return true;
         }
-        if(id==R.id.delete){
+        if(id==R.id.deleteDetail1){
             //delete from list and finish task
         }
         return super.onOptionsItemSelected(item);
@@ -78,7 +79,7 @@ public class Detail1Activity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.delete).setVisible(!(AppSingletone.getInstance().getCurrentPosition()==-1));
+        menu.findItem(R.id.deleteDetail1).setVisible(!(AppSingletone.getInstance().getCurrentPosition()==-1));
         return true;
     }
 

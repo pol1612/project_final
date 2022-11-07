@@ -20,7 +20,7 @@
 
         </activity>
         <activity android:name=".activities.Detail2Activity" android:exported="true">
-            
+
         </activity>
     </application>
 

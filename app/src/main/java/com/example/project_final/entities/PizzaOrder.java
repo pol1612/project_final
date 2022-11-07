@@ -3,7 +3,7 @@ package com.example.project_final.entities;
 import java.io.Serializable;
 
 public class PizzaOrder implements Serializable {
-    private int units;
+    //detail1 attributes
     private int price;
     private String clientsName;
     private String deliveryCode;
@@ -11,12 +11,13 @@ public class PizzaOrder implements Serializable {
     private String destination;
     private boolean hasBeenDelivered;
     private int size;
+    //detail2 attributes
     private boolean baseOfFlour;
     private boolean hasSpicyOil;
     private boolean hasTomatoSauce;
     private boolean hasMozzarella;
     private boolean hasGouda;
-    private boolean hasRoqueforte;
+    private boolean hasRoquefort;
     private boolean hasSwissCheese;
     private boolean hasHam;
     private boolean hasBacon;
@@ -31,7 +32,7 @@ public class PizzaOrder implements Serializable {
         hasTomatoSauce=false;
         hasMozzarella=false;
         hasGouda=false;
-        hasRoqueforte=false;
+        hasRoquefort =false;
         hasSwissCheese=false;
         hasHam=false;
         hasBacon=false;
@@ -107,12 +108,12 @@ public class PizzaOrder implements Serializable {
         this.hasGouda = hasGouda;
     }
 
-    public boolean isHasRoqueforte() {
-        return hasRoqueforte;
+    public boolean isHasRoquefort() {
+        return hasRoquefort;
     }
 
-    public void setHasRoqueforte(boolean hasRoqueforte) {
-        this.hasRoqueforte = hasRoqueforte;
+    public void setHasRoquefort(boolean hasRoquefort) {
+        this.hasRoquefort = hasRoquefort;
     }
 
     public boolean isHasSwissCheese() {
@@ -161,14 +162,6 @@ public class PizzaOrder implements Serializable {
 
     public void setHasBlackPepper(boolean hasBlackPepper) {
         this.hasBlackPepper = hasBlackPepper;
-    }
-
-    public int getUnits() {
-        return units;
-    }
-
-    public void setUnits(int units) {
-        this.units = units;
     }
 
     public int getPrice() {

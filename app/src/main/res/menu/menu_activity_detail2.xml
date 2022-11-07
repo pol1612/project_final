@@ -2,14 +2,19 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/deleteDetail1"
+        android:id="@+id/deleteDetail2"
         android:icon="@drawable/icons8_trash_50"
         android:title="delete pizza order"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/next"
-        android:icon="@drawable/icons8_next_page_50"
-        android:title="next page"
+        android:id="@+id/save"
+        android:icon="@drawable/icons8_save_50"
+        android:title="save pizza order"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/update"
+        android:icon="@drawable/icons8_update_50"
+        android:title="update pizza order"
         app:showAsAction="ifRoom" />
 
 </menu>
