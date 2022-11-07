@@ -15,10 +15,10 @@ import com.example.project_final.singletone.AppSingletone;
 
 import java.util.ArrayList;
 
-public class AdapterPizzaOrder extends RecyclerView.Adapter<AdapterPizzaOrder.ViewHolder> {
+public class PizzaOrderAdapter extends RecyclerView.Adapter<PizzaOrderAdapter.ViewHolder> {
     private ArrayList<PizzaOrder> pizzaOrders= AppSingletone.getInstance().getPizzaOrderArrayList();
 
-    public AdapterPizzaOrder(ArrayList<PizzaOrder> pizzaOrders) {
+    public PizzaOrderAdapter(ArrayList<PizzaOrder> pizzaOrders) {
         this.pizzaOrders = pizzaOrders;
     }
 
@@ -36,7 +36,7 @@ public class AdapterPizzaOrder extends RecyclerView.Adapter<AdapterPizzaOrder.Vi
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         PizzaOrder item=this.pizzaOrders.get(position);
         viewHolder.getClientsName().setText(item.getClientsName());
-        viewHolder.getDeliveryCode().setText(item.getDelivaryCode()+"");
+        viewHolder.getDeliveryCode().setText(item.getDeliveryCode()+"");
         viewHolder.getHasBeenDelivered().setChecked(item.isHasBeenDelivered());
     }
 

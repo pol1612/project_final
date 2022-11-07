@@ -9,12 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AD_C7">
-        <activity android:name="com.example.project_final.MainActivityRV" android:exported="true">
+        <activity android:name="com.example.project_final.activities.MasterActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.Detail1Activity" android:exported="true">
+
+        </activity>
+        <activity android:name=".activities.Detail2Activity" android:exported="true">
+            
         </activity>
     </application>
 

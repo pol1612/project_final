@@ -9,7 +9,7 @@
         android:id="@+id/txtViwClientsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +19,7 @@
         android:id="@+id/txtViwDeliveryCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,15 +30,14 @@
         android:id="@+id/chkBoxHasBeenDelivered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="12dp"
         android:enabled="false"
         android:text="pizza order's delivery status"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtViwDeliveryCode" />
 
     <view
         android:id="@+id/ViwLine"

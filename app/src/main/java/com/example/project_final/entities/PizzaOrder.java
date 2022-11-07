@@ -6,7 +6,7 @@ public class PizzaOrder implements Serializable {
     private int units;
     private int price;
     private String clientsName;
-    private String delivaryCode;
+    private String deliveryCode;
     private String deliveryDate;
     private String destination;
     private boolean hasBeenDelivered;
@@ -39,7 +39,7 @@ public class PizzaOrder implements Serializable {
         hasOregano=false;
         hasBlackPepper=false;
         clientsName ="";
-        delivaryCode="";
+        deliveryCode ="";
         hasBeenDelivered=false;
     }
 
@@ -187,12 +187,12 @@ public class PizzaOrder implements Serializable {
         this.clientsName = clientsName;
     }
 
-    public String getDelivaryCode() {
-        return delivaryCode;
+    public String getDeliveryCode() {
+        return deliveryCode;
     }
 
-    public void setDelivaryCode(String delivaryCode) {
-        this.delivaryCode = delivaryCode;
+    public void setDeliveryCode(String deliveryCode) {
+        this.deliveryCode = deliveryCode;
     }
 
     public boolean isHasBeenDelivered() {

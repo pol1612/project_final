@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/icons8_trash_50"
+        android:title="delete pizza order"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/next"
+        android:icon="@drawable/icons8_next_page_50"
+        android:title="next page"
+        app:showAsAction="ifRoom" />
+
+</menu>

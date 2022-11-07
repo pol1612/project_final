@@ -1,6 +1,5 @@
 package com.example.project_final.singletone;
 
-import com.example.project_final.entities.Country;
 import com.example.project_final.entities.PizzaOrder;
 
 import java.util.ArrayList;
@@ -25,9 +24,10 @@ public class AppSingletone {
         //Constructor Singleton
 
         this.pizzaOrderArrayList = new ArrayList<>();
+        //TODO: delete this
         PizzaOrder po=new PizzaOrder();
         po.setClientsName("pol");
-        po.setDelivaryCode("snjkwde123");
+        po.setDeliveryCode("snjkwde123");
         po.setHasBeenDelivered(true);
         pizzaOrderArrayList.add(po);
         pizzaOrderArrayList.add(po);

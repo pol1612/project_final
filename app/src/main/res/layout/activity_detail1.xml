@@ -6,67 +6,45 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtViwDeliverydate"
+        android:id="@+id/txtViwDeliveryDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="316dp"
         android:text="Delivery date:"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViwDeliveryStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Delivery status:"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/txtViwDeliverydate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintStart_toStartOf="@+id/txtViwDeliveryDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtEdAddress" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViwPizzaOrderSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:text="Pizza's size (cm):"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/txtViwDeliverydate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <Button
-        android:id="@+id/BtnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="16dp"
-        android:text="Next"
-        android:onClick="sendToEdit2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/BtnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="16dp"
-        android:text="delete"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/txtViwDeliveryDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtEdAddress" />
 
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spnPizzaOrderSize"
         android:layout_width="173dp"
         android:layout_height="19dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        app:layout_constraintStart_toEndOf="@+id/textViwPizzaOrderSize"
+        app:layout_constraintTop_toTopOf="@+id/textViwPizzaOrderSize" />
 
     <DatePicker
         android:id="@+id/datePickDeliveryDate"
@@ -76,11 +54,11 @@
         android:layout_marginTop="-20dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
-        app:layout_constraintStart_toEndOf="@+id/txtViwDeliverydate"
-        app:layout_constraintTop_toTopOf="@+id/txtViwDeliverydate" />
+        app:layout_constraintStart_toEndOf="@+id/txtViwDeliveryDate"
+        app:layout_constraintTop_toTopOf="@+id/txtViwDeliveryDate" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/txtEdAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -111,7 +89,7 @@
         android:hint="Pizza order's code"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/datePickDeliveryDate"
-        app:layout_constraintStart_toStartOf="@+id/txtViwDeliverydate" />
+        app:layout_constraintStart_toStartOf="@+id/txtViwDeliveryDate" />
 
     <EditText
         android:id="@+id/txtEdNumPizzaOrderPrice"
@@ -125,7 +103,7 @@
         app:layout_constraintStart_toStartOf="@+id/txtEdPasswordPizzaOrderCode" />
 
     <ToggleButton
-        android:id="@+id/toggleButton"
+        android:id="@+id/tgglBtnDeliveryStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -133,7 +111,7 @@
         android:text="ToggleButton"
         android:textOff="undelivered "
         android:textOn="Delivered"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/textViwDeliveryStatus"
+        app:layout_constraintTop_toTopOf="@+id/textViwDeliveryStatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
