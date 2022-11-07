@@ -63,6 +63,7 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
     @Override
     public void onClick(int position) {
-
+        AppSingletone.getInstance().getPizzaOrderArrayList().add(AppSingletone.getInstance().getPizzaOrderArrayList().get(position));
+        AppSingletone.getInstance().getPizzaOrderAdapter().notifyDataSetChanged();
     }
 }
