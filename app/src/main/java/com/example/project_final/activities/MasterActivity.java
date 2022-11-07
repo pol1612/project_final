@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_final.R;
 import com.example.project_final.adapter.PizzaOrderAdapter;
 import com.example.project_final.entities.PizzaOrder;
+import com.example.project_final.interfaces.ItemClickListener;
 import com.example.project_final.singletone.AppSingletone;
 
-public class MasterActivity extends AppCompatActivity {
+public class MasterActivity extends AppCompatActivity implements ItemClickListener {
 
     private RecyclerView recyclerView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +31,9 @@ public class MasterActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        recyclerView.setAdapter(AppSingletone.getInstance().getPizzaOrderAdapter());
+        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList(), this);
+        AppSingletone.getInstance().setPizzaOrderAdapter(pizzaOrderAdapter);
+        recyclerView.setAdapter(pizzaOrderAdapter);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class MasterActivity extends AppCompatActivity {
             AppSingletone.getInstance().setCurrentPosition(-1);
             AppSingletone.getInstance().setPizzaOrder(new PizzaOrder());
             Intent i = new Intent(MasterActivity.this, Detail1Activity.class);
-            startActivityForResult(i,1);
+            startActivity(i);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
@@ -58,5 +59,10 @@ public class MasterActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onClick(int position) {
+
     }
 }

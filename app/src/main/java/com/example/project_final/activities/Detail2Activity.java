@@ -73,8 +73,7 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasRoquefort(chBxRoquefort.isChecked());
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
-            ArrayList<PizzaOrder> pizzaOrderArrayList=AppSingletone.getInstance().getPizzaOrderArrayList();
-            pizzaOrderArrayList.add(pizzaOrder);
+            AppSingletone.getInstance().getPizzaOrderArrayList().add(pizzaOrder);
             AppSingletone.getInstance().getPizzaOrderAdapter().notifyDataSetChanged();
             finish();
             return true;

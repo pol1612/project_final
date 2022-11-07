@@ -1,5 +1,6 @@
 package com.example.project_final.singletone;
 
+import com.example.project_final.activities.MasterActivity;
 import com.example.project_final.adapter.PizzaOrderAdapter;
 import com.example.project_final.entities.PizzaOrder;
 
@@ -25,7 +26,6 @@ public class AppSingletone {
     private AppSingletone() {
         //Constructor Singleton
         this.pizzaOrderArrayList = new ArrayList<>();
-        this.pizzaOrderAdapter=new PizzaOrderAdapter(pizzaOrderArrayList);
     }
 
 

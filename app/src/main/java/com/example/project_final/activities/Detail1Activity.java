@@ -48,6 +48,9 @@ public class Detail1Activity extends AppCompatActivity {
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnPizzaOrderSize.setAdapter(aa);
     }
+    private void loadEdit1Data(){
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_detail1, menu);
