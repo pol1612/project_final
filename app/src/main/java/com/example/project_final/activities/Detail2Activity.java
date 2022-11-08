@@ -1,9 +1,6 @@
 package com.example.project_final.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
@@ -21,7 +18,13 @@ import java.util.ArrayList;
 
 
 public class Detail2Activity extends AppCompatActivity {
+
+    private ArrayList<PizzaOrder> pizzaOrderArrayList;
+    private PizzaOrder pizzaOrder;
+    private int pizzaOrderArrayListPosition;
+
     private RadioButton rdBtnFlour;
+    private RadioButton rdBtnYeast;
     private CheckBox chBxSpicyOil;
     private CheckBox chBxTomatoSauce;
     private CheckBox chBxHam;
@@ -39,9 +42,36 @@ public class Detail2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail2);
         loadDetail2();
+        if(pizzaOrderArrayListPosition!=-1){
+            loadDetail2Data();
+        }
     }
+
+    private void loadDetail2Data() {
+        rdBtnFlour.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isBaseOfFlour());
+        rdBtnYeast.setChecked(!pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isBaseOfFlour());
+        chBxSpicyOil.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasSpicyOil());
+        chBxTomatoSauce.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasTomatoSauce());
+        chBxHam.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasHam());
+        chBxBacon.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasBacon());
+        chBxMozzarella.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasMozzarella());
+        chBxMincedMeat.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasMincedMeat());
+        chBxGouda.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasGouda());
+        chBxOregano.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasOregano());
+        chBxRoquefort.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasRoquefort());
+        chBxBlackPepper.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasBlackPepper());
+        chBxSwissCheese.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasSwissCheese());
+    }
+
     private void loadDetail2(){
+        pizzaOrderArrayList=AppSingletone.getInstance().getPizzaOrderArrayList();
+        pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
+        pizzaOrderArrayListPosition=AppSingletone.getInstance().getCurrentPosition();
+
         rdBtnFlour=findViewById(R.id.rdBtnFlour);
+        rdBtnYeast=findViewById(R.id.rdBtnYeast);
+        chBxSpicyOil=findViewById(R.id.chBxSpicyOil);
+        chBxTomatoSauce=findViewById(R.id.chBxTomatoSauce);
         chBxHam=findViewById(R.id.chBxHam);
         chBxBacon=findViewById(R.id.chBxBacon);
         chBxMozzarella=findViewById(R.id.chBxMozzarella);
@@ -62,8 +92,9 @@ public class Detail2Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if(id==R.id.save){
-            PizzaOrder pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
             pizzaOrder.setBaseOfFlour(rdBtnFlour.isChecked());
+            pizzaOrder.setHasSpicyOil(chBxSpicyOil.isChecked());
+            pizzaOrder.setHasTomatoSauce(chBxTomatoSauce.isChecked());
             pizzaOrder.setHasHam(chBxHam.isChecked());
             pizzaOrder.setHasBacon(chBxBacon.isChecked());
             pizzaOrder.setHasMozzarella(chBxMozzarella.isChecked());
@@ -73,22 +104,43 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasRoquefort(chBxRoquefort.isChecked());
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
-            AppSingletone.getInstance().getPizzaOrderArrayList().add(pizzaOrder);
-            Detail1Activity.setHasDetail2SavedUpdatedDeletedButtonBeenPressed(true);
+            pizzaOrderArrayList.add(pizzaOrder);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
             finish();
             return true;
         }
         if(id==R.id.deleteDetail2){
-            //delete from list and finish task
+            pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
+            finish();
+            return true;
+        }
+        if(id==R.id.update){
+            pizzaOrder.setBaseOfFlour(rdBtnFlour.isChecked());
+            pizzaOrder.setHasSpicyOil(chBxSpicyOil.isChecked());
+            pizzaOrder.setHasTomatoSauce(chBxTomatoSauce.isChecked());
+            pizzaOrder.setHasHam(chBxHam.isChecked());
+            pizzaOrder.setHasBacon(chBxBacon.isChecked());
+            pizzaOrder.setHasMozzarella(chBxMozzarella.isChecked());
+            pizzaOrder.setHasMincedMeat(chBxMincedMeat.isChecked());
+            pizzaOrder.setHasGouda(chBxGouda.isChecked());
+            pizzaOrder.setHasOregano(chBxOregano.isChecked());
+            pizzaOrder.setHasRoquefort(chBxRoquefort.isChecked());
+            pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
+            pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
+            pizzaOrderArrayList.set(pizzaOrderArrayListPosition,pizzaOrder);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.deleteDetail2).setVisible(!(AppSingletone.getInstance().getCurrentPosition()==-1));
-        menu.findItem(R.id.update).setVisible(!(AppSingletone.getInstance().getCurrentPosition()==-1));
-        menu.findItem(R.id.save).setVisible((AppSingletone.getInstance().getCurrentPosition()==-1));
+        menu.findItem(R.id.deleteDetail2).setVisible(!(pizzaOrderArrayListPosition==-1));
+        menu.findItem(R.id.update).setVisible(!(pizzaOrderArrayListPosition==-1));
+        menu.findItem(R.id.save).setVisible((pizzaOrderArrayListPosition==-1));
         return true;
     }
 }

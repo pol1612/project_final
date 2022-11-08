@@ -102,7 +102,6 @@ public class Detail1Activity extends AppCompatActivity {
             pizzaOrder.setSize(Integer.parseInt(spnPizzaOrderSize.getSelectedItem().toString()));
             Intent i = new Intent(Detail1Activity.this, Detail2Activity.class);
             startActivity(i);
-
             return true;
         }
         if(id==R.id.deleteDetail1){
@@ -127,7 +126,7 @@ public class Detail1Activity extends AppCompatActivity {
         }
     }
 
-    public static void setHasDetail2SavedUpdatedDeletedButtonBeenPressed(boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
+    public static void setHasDetail2SavedUpdatedDeletedBeforeFinish(boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
         Detail1Activity.hasDetail2SavedUpdatedDeletedButtonBeenPressed = hasDetail2SavedUpdatedDeletedButtonBeenPressed;
     }
 }
