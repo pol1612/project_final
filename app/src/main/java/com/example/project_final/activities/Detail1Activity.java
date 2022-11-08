@@ -20,6 +20,7 @@ import com.example.project_final.entities.PizzaOrder;
 import com.example.project_final.singletone.AppSingletone;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Detail1Activity extends AppCompatActivity {
     private ArrayList<PizzaOrder> pizzaOrderArrayList;
@@ -32,6 +33,7 @@ public class Detail1Activity extends AppCompatActivity {
     private TextView txtEdAddress;
     private ToggleButton tgglBtnDeliveryStatus;
     private Spinner spnPizzaOrderSize;
+    private static boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class Detail1Activity extends AppCompatActivity {
         if(AppSingletone.getInstance().getCurrentPosition()!=-1){
             loadEdit1Data();
         }
+        hasDetail2SavedUpdatedDeletedButtonBeenPressed=false;
     }
     private void loadEdit1(){
         pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
@@ -69,7 +72,6 @@ public class Detail1Activity extends AppCompatActivity {
         txtEdNumPizzaOrderPrice.setText(Float.toString(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getPrice()));
 
         txtEdPasswordPizzaOrderCode.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
-
         txtEdPasswordPizzaOrderCode.setText( pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryCode());
 
         int year= Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[2]);
@@ -78,7 +80,8 @@ public class Detail1Activity extends AppCompatActivity {
         datePickDeliveryDate.updateDate(year,month,day);
         txtEdAddress.setText(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDestination());
         tgglBtnDeliveryStatus.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasBeenDelivered());
-
+        int pos= Arrays.asList(new String[] {"15", "20", "30"}).indexOf(Integer.toString(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getSize()));
+        spnPizzaOrderSize.setSelection(pos);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,11 +102,13 @@ public class Detail1Activity extends AppCompatActivity {
             pizzaOrder.setSize(Integer.parseInt(spnPizzaOrderSize.getSelectedItem().toString()));
             Intent i = new Intent(Detail1Activity.this, Detail2Activity.class);
             startActivity(i);
-            finish();
+
             return true;
         }
         if(id==R.id.deleteDetail1){
-            //delete from list and finish task
+            pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -114,4 +119,15 @@ public class Detail1Activity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if(hasDetail2SavedUpdatedDeletedButtonBeenPressed){
+            finish();
+        }
+    }
+
+    public static void setHasDetail2SavedUpdatedDeletedButtonBeenPressed(boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
+        Detail1Activity.hasDetail2SavedUpdatedDeletedButtonBeenPressed = hasDetail2SavedUpdatedDeletedButtonBeenPressed;
+    }
 }

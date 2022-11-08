@@ -74,6 +74,7 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
             AppSingletone.getInstance().getPizzaOrderArrayList().add(pizzaOrder);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedButtonBeenPressed(true);
             finish();
             return true;
         }
