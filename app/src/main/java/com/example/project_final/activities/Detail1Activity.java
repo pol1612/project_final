@@ -18,7 +18,12 @@ import com.example.project_final.R;
 import com.example.project_final.entities.PizzaOrder;
 import com.example.project_final.singletone.AppSingletone;
 
+import java.util.ArrayList;
+
 public class Detail1Activity extends AppCompatActivity {
+    private ArrayList<PizzaOrder> pizzaOrderArrayList;
+    private PizzaOrder pizzaOrder;
+    private int pizzaOrderArrayListPosition;
     private TextView txtEdClientName;
     private TextView txtEdNumPizzaOrderPrice;
     private TextView txtEdPasswordPizzaOrderCode;
@@ -33,10 +38,14 @@ public class Detail1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_detail1);
         loadEdit1();
         if(AppSingletone.getInstance().getCurrentPosition()!=-1){
-            //get the data from the object using the list and the position
+            loadEdit1Data();
         }
     }
     private void loadEdit1(){
+        pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
+        pizzaOrderArrayList=AppSingletone.getInstance().getPizzaOrderArrayList();
+        pizzaOrderArrayListPosition=AppSingletone.getInstance().getCurrentPosition();
+
         txtEdClientName =findViewById(R.id.txtEdClientName);
         txtEdNumPizzaOrderPrice =findViewById(R.id.txtEdNumPizzaOrderPrice);
         txtEdPasswordPizzaOrderCode =findViewById(R.id.txtEdPasswordPizzaOrderCode);
@@ -49,6 +58,14 @@ public class Detail1Activity extends AppCompatActivity {
         spnPizzaOrderSize.setAdapter(aa);
     }
     private void loadEdit1Data(){
+        txtEdClientName.setText(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getClientsName());
+        txtEdNumPizzaOrderPrice.setText(Float.toString(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getPrice()));
+        txtEdPasswordPizzaOrderCode.setText( pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryCode());
+        int year= Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[2]);
+        int month=Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[1]);
+        int day=Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[0]);
+        datePickDeliveryDate.updateDate(year,month,day);
+        txtEdAddress.setText(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDestination());
 
     }
     @Override
@@ -61,7 +78,6 @@ public class Detail1Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if(id==R.id.next){
-            PizzaOrder pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
             pizzaOrder.setClientsName(txtEdClientName.getText().toString());
             pizzaOrder.setPrice(Float.parseFloat(txtEdNumPizzaOrderPrice.getText().toString()));
             pizzaOrder.setDeliveryCode(txtEdPasswordPizzaOrderCode.getText().toString());

@@ -69,8 +69,9 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
     @Override
     public void onClick(int position) {
-        /*set single pos to *position*
-        go to edit1
-        * */
+        AppSingletone.getInstance().setCurrentPosition(position);
+        AppSingletone.getInstance().setPizzaOrder(new PizzaOrder());
+        Intent i = new Intent(MasterActivity.this, Detail1Activity.class);
+        startActivity(i);
     }
 }
