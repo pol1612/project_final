@@ -34,7 +34,7 @@ public class Detail1Activity extends AppCompatActivity {
     private TextView txtEdAddress;
     private ToggleButton tgglBtnDeliveryStatus;
     private Spinner spnPizzaOrderSize;
-    private static boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed;
+    private static boolean hasDetail2SavedUpdatedDeletedCanceledBeforeFinish;
     private static boolean isEditModeOn;
 
     @Override
@@ -47,7 +47,7 @@ public class Detail1Activity extends AppCompatActivity {
             loadEdit1Data();
         }
         isEditModeOn=false;
-        hasDetail2SavedUpdatedDeletedButtonBeenPressed=false;
+        hasDetail2SavedUpdatedDeletedCanceledBeforeFinish =false;
     }
     private void loadEdit1(){
         pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
@@ -137,7 +137,7 @@ public class Detail1Activity extends AppCompatActivity {
             menu.findItem(R.id.editDetail1).setVisible(false);
         }else {
             if (isEditModeOn) {
-                menu.findItem(R.id.deleteDetail1).setVisible(true);
+                menu.findItem(R.id.deleteDetail1).setVisible(false);
                 menu.findItem(R.id.editDetail1).setVisible(false);
             } else {
                 menu.findItem(R.id.deleteDetail1).setVisible(true);
@@ -150,7 +150,7 @@ public class Detail1Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
+        if (hasDetail2SavedUpdatedDeletedCanceledBeforeFinish) {
             finish();
         }
 
@@ -164,8 +164,8 @@ public class Detail1Activity extends AppCompatActivity {
         tgglBtnDeliveryStatus.setEnabled(false);
         spnPizzaOrderSize.setEnabled(false);
     }
-    public static void setHasDetail2SavedUpdatedDeletedBeforeFinish(boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
-        Detail1Activity.hasDetail2SavedUpdatedDeletedButtonBeenPressed = hasDetail2SavedUpdatedDeletedButtonBeenPressed;
+    public static void setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
+        Detail1Activity.hasDetail2SavedUpdatedDeletedCanceledBeforeFinish = hasDetail2SavedUpdatedDeletedButtonBeenPressed;
     }
 
     public static boolean isIsEditModeOn() {

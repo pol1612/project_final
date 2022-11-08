@@ -144,12 +144,12 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
             pizzaOrderArrayList.add(pizzaOrder);
-            Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
             finish();
         }
         if(id==R.id.deleteDetail2){
             pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
-            Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
             finish();
         }
         if(id==R.id.update){
@@ -166,7 +166,11 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
             pizzaOrderArrayList.set(pizzaOrderArrayListPosition,pizzaOrder);
-            Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
+            finish();
+        }
+        if(id==R.id.cancel || id==R.id.home){
+            Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
             finish();
         }
         invalidateOptionsMenu();
@@ -178,14 +182,19 @@ public class Detail2Activity extends AppCompatActivity {
         if(pizzaOrderArrayListPosition==-1){
             menu.findItem(R.id.update).setVisible(false);
             menu.findItem(R.id.deleteDetail2).setVisible(false);
+            menu.findItem(R.id.home).setVisible(false);
         }else {
             menu.findItem(R.id.save).setVisible(false);
             if(isEditModeOn){
-                menu.findItem(R.id.deleteDetail2).setVisible(true);
+                menu.findItem(R.id.deleteDetail2).setVisible(false);
                 menu.findItem(R.id.update).setVisible(true);
+                menu.findItem(R.id.cancel).setVisible(true);
+                menu.findItem(R.id.home).setVisible(false);
             } else {
                 menu.findItem(R.id.update).setVisible(false);
                 menu.findItem(R.id.deleteDetail2).setVisible(true);
+                menu.findItem(R.id.cancel).setVisible(false);
+                menu.findItem(R.id.home).setVisible(true);
             }
         }
         return true;

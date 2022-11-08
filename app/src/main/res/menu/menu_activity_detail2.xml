@@ -7,6 +7,11 @@
         android:title="delete pizza order"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/cancel"
+        android:icon="@drawable/icons8_cancel_50"
+        android:title="cancel updating or saving"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/save"
         android:icon="@drawable/icons8_save_50"
         android:title="save pizza order"
@@ -15,6 +20,12 @@
         android:id="@+id/update"
         android:icon="@drawable/icons8_update_50"
         android:title="update pizza order"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/icons8_home_50"
+        android:title="goes home"
         app:showAsAction="ifRoom" />
 
 </menu>
