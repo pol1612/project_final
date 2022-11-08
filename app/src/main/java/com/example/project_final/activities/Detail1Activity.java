@@ -2,6 +2,7 @@ package com.example.project_final.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -48,24 +49,35 @@ public class Detail1Activity extends AppCompatActivity {
 
         txtEdClientName =findViewById(R.id.txtEdClientName);
         txtEdNumPizzaOrderPrice =findViewById(R.id.txtEdNumPizzaOrderPrice);
+
         txtEdPasswordPizzaOrderCode =findViewById(R.id.txtEdPasswordPizzaOrderCode);
+        txtEdPasswordPizzaOrderCode.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
         datePickDeliveryDate =findViewById(R.id.datePickDeliveryDate);
         txtEdAddress =findViewById(R.id.txtEdAddress);
         tgglBtnDeliveryStatus =findViewById(R.id.tgglBtnDeliveryStatus);
         spnPizzaOrderSize =findViewById(R.id.spnPizzaOrderSize);
+
         ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item, new String[]{"15", "20", "30"});
+
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spnPizzaOrderSize.setAdapter(aa);
     }
     private void loadEdit1Data(){
         txtEdClientName.setText(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getClientsName());
         txtEdNumPizzaOrderPrice.setText(Float.toString(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getPrice()));
+
+        txtEdPasswordPizzaOrderCode.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+
         txtEdPasswordPizzaOrderCode.setText( pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryCode());
+
         int year= Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[2]);
         int month=Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[1]);
         int day=Integer.parseInt(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDeliveryDate().split("/")[0]);
         datePickDeliveryDate.updateDate(year,month,day);
         txtEdAddress.setText(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).getDestination());
+        tgglBtnDeliveryStatus.setChecked(pizzaOrderArrayList.get(pizzaOrderArrayListPosition).isHasBeenDelivered());
 
     }
     @Override
