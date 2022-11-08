@@ -7,6 +7,11 @@
         android:title="delete pizza order"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/editDetail1"
+        android:icon="@drawable/icons8_edit_50"
+        android:title="edit mode"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/next"
         android:icon="@drawable/icons8_next_page_50"
         android:title="next page"

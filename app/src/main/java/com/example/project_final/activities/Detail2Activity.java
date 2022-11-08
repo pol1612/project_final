@@ -37,14 +37,53 @@ public class Detail2Activity extends AppCompatActivity {
     private CheckBox chBxBlackPepper;
     private CheckBox chBxSwissCheese;
 
+    private static boolean isEditModeOn;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail2);
         loadDetail2();
+        isEditModeOn=Detail1Activity.isIsEditModeOn();
         if(pizzaOrderArrayListPosition!=-1){
             loadDetail2Data();
+            if(!isEditModeOn){
+                disable();
+            }
         }
+
+
+    }
+
+    private void disable() {
+        rdBtnFlour.setEnabled(false);
+        rdBtnYeast.setEnabled(false);
+        chBxSpicyOil.setEnabled(false);
+        chBxTomatoSauce.setEnabled(false);
+        chBxHam.setEnabled(false);
+        chBxBacon.setEnabled(false);
+        chBxMozzarella.setEnabled(false);
+        chBxMincedMeat.setEnabled(false);
+        chBxGouda.setEnabled(false);
+        chBxOregano.setEnabled(false);
+        chBxRoquefort.setEnabled(false);
+        chBxBlackPepper.setEnabled(false);
+        chBxSwissCheese.setEnabled(false);
+    }
+    private void enable() {
+        rdBtnFlour.setEnabled(true);
+        rdBtnYeast.setEnabled(true);
+        chBxSpicyOil.setEnabled(true);
+        chBxTomatoSauce.setEnabled(true);
+        chBxHam.setEnabled(true);
+        chBxBacon.setEnabled(true);
+        chBxMozzarella.setEnabled(true);
+        chBxMincedMeat.setEnabled(true);
+        chBxGouda.setEnabled(true);
+        chBxOregano.setEnabled(true);
+        chBxRoquefort.setEnabled(true);
+        chBxBlackPepper.setEnabled(true);
+        chBxSwissCheese.setEnabled(true);
     }
 
     private void loadDetail2Data() {
@@ -107,13 +146,11 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrderArrayList.add(pizzaOrder);
             Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
             finish();
-            return true;
         }
         if(id==R.id.deleteDetail2){
             pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
             Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
             finish();
-            return true;
         }
         if(id==R.id.update){
             pizzaOrder.setBaseOfFlour(rdBtnFlour.isChecked());
@@ -131,16 +168,27 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrderArrayList.set(pizzaOrderArrayListPosition,pizzaOrder);
             Detail1Activity.setHasDetail2SavedUpdatedDeletedBeforeFinish(true);
             finish();
-            return true;
         }
+        invalidateOptionsMenu();
         return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.deleteDetail2).setVisible(!(pizzaOrderArrayListPosition==-1));
-        menu.findItem(R.id.update).setVisible(!(pizzaOrderArrayListPosition==-1));
-        menu.findItem(R.id.save).setVisible((pizzaOrderArrayListPosition==-1));
+        if(pizzaOrderArrayListPosition==-1){
+            menu.findItem(R.id.update).setVisible(false);
+            menu.findItem(R.id.deleteDetail2).setVisible(false);
+        }else {
+            menu.findItem(R.id.save).setVisible(false);
+            if(isEditModeOn){
+                menu.findItem(R.id.deleteDetail2).setVisible(true);
+                menu.findItem(R.id.update).setVisible(true);
+            } else {
+                menu.findItem(R.id.update).setVisible(false);
+                menu.findItem(R.id.deleteDetail2).setVisible(true);
+            }
+        }
         return true;
+
     }
 }

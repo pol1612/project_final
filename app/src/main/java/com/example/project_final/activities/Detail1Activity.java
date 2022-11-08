@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Detail1Activity extends AppCompatActivity {
+
     private ArrayList<PizzaOrder> pizzaOrderArrayList;
     private PizzaOrder pizzaOrder;
     private int pizzaOrderArrayListPosition;
@@ -34,15 +35,18 @@ public class Detail1Activity extends AppCompatActivity {
     private ToggleButton tgglBtnDeliveryStatus;
     private Spinner spnPizzaOrderSize;
     private static boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed;
+    private static boolean isEditModeOn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail1);
         loadEdit1();
-        if(AppSingletone.getInstance().getCurrentPosition()!=-1){
+        if(pizzaOrderArrayListPosition!=-1){
+            disable();
             loadEdit1Data();
         }
+        isEditModeOn=false;
         hasDetail2SavedUpdatedDeletedButtonBeenPressed=false;
     }
     private void loadEdit1(){
@@ -102,31 +106,73 @@ public class Detail1Activity extends AppCompatActivity {
             pizzaOrder.setSize(Integer.parseInt(spnPizzaOrderSize.getSelectedItem().toString()));
             Intent i = new Intent(Detail1Activity.this, Detail2Activity.class);
             startActivity(i);
-            return true;
         }
         if(id==R.id.deleteDetail1){
             pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
             finish();
-            return true;
         }
+        if(id==R.id.editDetail1){
+            isEditModeOn=true;
+            enable();
+        }
+        invalidateOptionsMenu();
         return super.onOptionsItemSelected(item);
     }
+
+    private void enable() {
+        txtEdClientName.setEnabled(true);
+        txtEdNumPizzaOrderPrice.setEnabled(true);
+        txtEdPasswordPizzaOrderCode.setEnabled(true);
+        datePickDeliveryDate.setEnabled(true);
+        txtEdAddress.setEnabled(true);
+        tgglBtnDeliveryStatus.setEnabled(true);
+        spnPizzaOrderSize.setEnabled(true);
+    }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.deleteDetail1).setVisible(!(AppSingletone.getInstance().getCurrentPosition()==-1));
+        if(pizzaOrderArrayListPosition==-1){
+            menu.findItem(R.id.deleteDetail1).setVisible(false);
+            menu.findItem(R.id.editDetail1).setVisible(false);
+        }else {
+            if (isEditModeOn) {
+                menu.findItem(R.id.deleteDetail1).setVisible(true);
+                menu.findItem(R.id.editDetail1).setVisible(false);
+            } else {
+                menu.findItem(R.id.deleteDetail1).setVisible(true);
+                menu.findItem(R.id.editDetail1).setVisible(true);
+            }
+        }
         return true;
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        if(hasDetail2SavedUpdatedDeletedButtonBeenPressed){
+    protected void onResume() {
+        super.onResume();
+        if (hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
             finish();
         }
-    }
 
+    }
+    private void disable(){
+        txtEdClientName.setEnabled(false);
+        txtEdNumPizzaOrderPrice.setEnabled(false);
+        txtEdPasswordPizzaOrderCode.setEnabled(false);
+        datePickDeliveryDate.setEnabled(false);
+        txtEdAddress.setEnabled(false);
+        tgglBtnDeliveryStatus.setEnabled(false);
+        spnPizzaOrderSize.setEnabled(false);
+    }
     public static void setHasDetail2SavedUpdatedDeletedBeforeFinish(boolean hasDetail2SavedUpdatedDeletedButtonBeenPressed) {
         Detail1Activity.hasDetail2SavedUpdatedDeletedButtonBeenPressed = hasDetail2SavedUpdatedDeletedButtonBeenPressed;
+    }
+
+    public static boolean isIsEditModeOn() {
+        return isEditModeOn;
+    }
+
+    public static void setIsEditModeOn(boolean isEditModeOn) {
+        Detail1Activity.isEditModeOn = isEditModeOn;
     }
 }
