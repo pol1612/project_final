@@ -1,8 +1,7 @@
-package com.example.project_final.singletone;
+package cat.uvic.m08.pol.sanejove.project_final.singletone;
 
-import com.example.project_final.activities.MasterActivity;
-import com.example.project_final.adapter.PizzaOrderAdapter;
-import com.example.project_final.entities.PizzaOrder;
+import cat.uvic.m08.pol.sanejove.project_final.adapter.PizzaOrderAdapter;
+import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
 
 import java.util.ArrayList;
 

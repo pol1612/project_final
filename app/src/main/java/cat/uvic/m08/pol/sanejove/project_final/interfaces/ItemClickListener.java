@@ -1,6 +1,4 @@
-package com.example.project_final.interfaces;
-
-import android.view.View;
+package cat.uvic.m08.pol.sanejove.project_final.interfaces;
 
 public interface ItemClickListener {
     public void onClick(int position);

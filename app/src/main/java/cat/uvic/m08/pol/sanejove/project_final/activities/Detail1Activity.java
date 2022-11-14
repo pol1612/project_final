@@ -1,4 +1,4 @@
-package com.example.project_final.activities;
+package cat.uvic.m08.pol.sanejove.project_final.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_final.R;
-import com.example.project_final.entities.PizzaOrder;
-import com.example.project_final.singletone.AppSingletone;
+import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
+import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingletone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -119,15 +119,7 @@ public class Detail1Activity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void enable() {
-        txtEdClientName.setEnabled(true);
-        txtEdNumPizzaOrderPrice.setEnabled(true);
-        txtEdPasswordPizzaOrderCode.setEnabled(true);
-        datePickDeliveryDate.setEnabled(true);
-        txtEdAddress.setEnabled(true);
-        tgglBtnDeliveryStatus.setEnabled(true);
-        spnPizzaOrderSize.setEnabled(true);
-    }
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -146,7 +138,15 @@ public class Detail1Activity extends AppCompatActivity {
         }
         return true;
     }
-
+    private void enable() {
+        txtEdClientName.setEnabled(true);
+        txtEdNumPizzaOrderPrice.setEnabled(true);
+        txtEdPasswordPizzaOrderCode.setEnabled(true);
+        datePickDeliveryDate.setEnabled(true);
+        txtEdAddress.setEnabled(true);
+        tgglBtnDeliveryStatus.setEnabled(true);
+        spnPizzaOrderSize.setEnabled(true);
+    }
     @Override
     protected void onResume() {
         super.onResume();

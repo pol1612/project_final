@@ -1,4 +1,4 @@
-package com.example.project_final.activities;
+package cat.uvic.m08.pol.sanejove.project_final.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_final.R;
-import com.example.project_final.entities.PizzaOrder;
-import com.example.project_final.singletone.AppSingletone;
+import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
+import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingletone;
 
 import java.util.ArrayList;
 

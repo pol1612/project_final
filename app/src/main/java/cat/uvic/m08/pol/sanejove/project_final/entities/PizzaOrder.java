@@ -1,4 +1,4 @@
-package com.example.project_final.entities;
+package cat.uvic.m08.pol.sanejove.project_final.entities;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.example.project_final;
+package cat.uvic.m08.pol.sanejove.project_final;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.example.project_final.adapter;
+package cat.uvic.m08.pol.sanejove.project_final.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_final.R;
-import com.example.project_final.entities.PizzaOrder;
-import com.example.project_final.interfaces.ItemClickListener;
+import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
+import cat.uvic.m08.pol.sanejove.project_final.interfaces.ItemClickListener;
 
 import java.util.ArrayList;
 
