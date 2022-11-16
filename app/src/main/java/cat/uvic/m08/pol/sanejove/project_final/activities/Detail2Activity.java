@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
-import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingletone;
+import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingleton;
 
 import java.util.ArrayList;
 
@@ -103,9 +103,9 @@ public class Detail2Activity extends AppCompatActivity {
     }
 
     private void loadDetail2(){
-        pizzaOrderArrayList=AppSingletone.getInstance().getPizzaOrderArrayList();
-        pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
-        pizzaOrderArrayListPosition=AppSingletone.getInstance().getCurrentPosition();
+        pizzaOrderArrayList= AppSingleton.getInstance().getPizzaOrderArrayList();
+        pizzaOrder= AppSingleton.getInstance().getPizzaOrder();
+        pizzaOrderArrayListPosition= AppSingleton.getInstance().getCurrentPosition();
 
         rdBtnFlour=findViewById(R.id.rdBtnFlour);
         rdBtnYeast=findViewById(R.id.rdBtnYeast);
@@ -143,12 +143,13 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasRoquefort(chBxRoquefort.isChecked());
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
-            pizzaOrderArrayList.add(pizzaOrder);
+            AppSingleton.getInstance().saveToPizzaOrderArrayListItem();
             Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
             finish();
         }
         if(id==R.id.deleteDetail2){
-            pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
+            //pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
+            AppSingleton.getInstance().deleteFromPizzaOrderArrayListItem();
             Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
             finish();
         }
@@ -165,7 +166,8 @@ public class Detail2Activity extends AppCompatActivity {
             pizzaOrder.setHasRoquefort(chBxRoquefort.isChecked());
             pizzaOrder.setHasBlackPepper(chBxBlackPepper.isChecked());
             pizzaOrder.setHasSwissCheese(chBxSwissCheese.isChecked());
-            pizzaOrderArrayList.set(pizzaOrderArrayListPosition,pizzaOrder);
+            //pizzaOrderArrayList.set(pizzaOrderArrayListPosition,pizzaOrder);
+            AppSingleton.getInstance().updatePizzaOrderArrayListItem();
             Detail1Activity.setHasDetail2SavedUpdatedDeletedCanceledBeforeFinish(true);
             finish();
         }

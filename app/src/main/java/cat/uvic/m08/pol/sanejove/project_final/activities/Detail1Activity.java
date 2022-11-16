@@ -21,7 +21,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
-import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingletone;
+import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingleton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,9 +56,9 @@ public class Detail1Activity extends AppCompatActivity {
         hasDetail2SavedUpdatedDeletedCanceledBeforeFinish =false;
     }
     private void loadEdit1(){
-        pizzaOrder=AppSingletone.getInstance().getPizzaOrder();
-        pizzaOrderArrayList=AppSingletone.getInstance().getPizzaOrderArrayList();
-        pizzaOrderArrayListPosition=AppSingletone.getInstance().getCurrentPosition();
+        pizzaOrder= AppSingleton.getInstance().getPizzaOrder();
+        pizzaOrderArrayList= AppSingleton.getInstance().getPizzaOrderArrayList();
+        pizzaOrderArrayListPosition= AppSingleton.getInstance().getCurrentPosition();
 
         txtEdClientName =findViewById(R.id.txtEdClientName);
         txtEdNumPizzaOrderPrice =findViewById(R.id.txtEdNumPizzaOrderPrice);

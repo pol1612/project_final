@@ -11,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.adapter.PizzaOrderAdapter;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
 import cat.uvic.m08.pol.sanejove.project_final.interfaces.ItemClickListener;
-import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingletone;
+import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingleton;
 
 public class MasterActivity extends AppCompatActivity implements ItemClickListener {
 
@@ -23,6 +25,7 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("masteractivity oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
 
@@ -31,8 +34,11 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingletone.getInstance().getPizzaOrderArrayList(), this);
-        AppSingletone.getInstance().setPizzaOrderAdapter(pizzaOrderAdapter);
+        AppSingleton.getInstance().setAppContext(this);
+        AppSingleton.getInstance().setPizzOrderArrayListToJSONFile();
+
+        PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingleton.getInstance().getPizzaOrderArrayList(), this);
+        AppSingleton.getInstance().setPizzaOrderAdapter(pizzaOrderAdapter);
         recyclerView.setAdapter(pizzaOrderAdapter);
     }
 
@@ -46,8 +52,8 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if(id==R.id.add){
-            AppSingletone.getInstance().setCurrentPosition(-1);
-            AppSingletone.getInstance().setPizzaOrder(new PizzaOrder());
+            AppSingleton.getInstance().setCurrentPosition(-1);
+            AppSingleton.getInstance().setPizzaOrder(new PizzaOrder());
             Intent i = new Intent(MasterActivity.this, Detail1Activity.class);
             startActivity(i);
             return true;
@@ -59,7 +65,9 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
     @Override
     protected void onResume() {
         super.onResume();
-        AppSingletone.getInstance().getPizzaOrderAdapter().notifyDataSetChanged();
+        AppSingleton.getInstance().getPizzaOrderAdapter().notifyDataSetChanged();
+        /**/
+        //TODO implement ADD,UPDATE,DELETE from Singleton to save
     }
 
     @Override
@@ -69,9 +77,9 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
     @Override
     public void onClick(int position) {
-        AppSingletone.getInstance().setCurrentPosition(position);
-        AppSingletone.getInstance().setPizzaOrder(new PizzaOrder());
+        AppSingleton.getInstance().setCurrentPosition(position);
         Intent i = new Intent(MasterActivity.this, Detail1Activity.class);
         startActivity(i);
     }
+
 }
