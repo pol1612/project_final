@@ -1,5 +1,6 @@
 package cat.uvic.m08.pol.sanejove.project_final.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -9,11 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.apache.commons.lang3.math.NumberUtils;
 
 import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
@@ -36,6 +40,8 @@ public class Detail1Activity extends AppCompatActivity {
     private Spinner spnPizzaOrderSize;
     private static boolean hasDetail2SavedUpdatedDeletedCanceledBeforeFinish;
     private static boolean isEditModeOn;
+    private AlertDialog.Builder builder;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,17 +101,27 @@ public class Detail1Activity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         int id=item.getItemId();
         if(id==R.id.next){
-            pizzaOrder.setClientsName(txtEdClientName.getText().toString());
-            pizzaOrder.setPrice(Float.parseFloat(txtEdNumPizzaOrderPrice.getText().toString()));
-            pizzaOrder.setDeliveryCode(txtEdPasswordPizzaOrderCode.getText().toString());
-            pizzaOrder.setDeliveryDate(datePickDeliveryDate.getDayOfMonth()+"/"+datePickDeliveryDate.getMonth()+"/"+datePickDeliveryDate.getYear());
-            pizzaOrder.setDestination(txtEdAddress.getText().toString());
-            pizzaOrder.setHasBeenDelivered(tgglBtnDeliveryStatus.isChecked());
-            pizzaOrder.setSize(Integer.parseInt(spnPizzaOrderSize.getSelectedItem().toString()));
-            Intent i = new Intent(Detail1Activity.this, Detail2Activity.class);
-            startActivity(i);
+            boolean allFormFieldsAreFilled=false;
+            allFormFieldsAreFilled=(!txtEdClientName.getText().toString().equals("") && NumberUtils.isNumber(txtEdNumPizzaOrderPrice.getText().toString()) && !txtEdAddress.getText().toString().equals("") && !txtEdPasswordPizzaOrderCode.getText().toString().equals(""));
+            //WHEN COMPARING STRINGS USE .equals, NOT '==
+            if(allFormFieldsAreFilled) {
+                pizzaOrder.setClientsName(txtEdClientName.getText().toString());
+                pizzaOrder.setPrice(Float.parseFloat(txtEdNumPizzaOrderPrice.getText().toString()));
+                pizzaOrder.setDeliveryCode(txtEdPasswordPizzaOrderCode.getText().toString());
+                pizzaOrder.setDeliveryDate(datePickDeliveryDate.getDayOfMonth() + "/" + datePickDeliveryDate.getMonth() + "/" + datePickDeliveryDate.getYear());
+                pizzaOrder.setDestination(txtEdAddress.getText().toString());
+                pizzaOrder.setHasBeenDelivered(tgglBtnDeliveryStatus.isChecked());
+                pizzaOrder.setSize(Integer.parseInt(spnPizzaOrderSize.getSelectedItem().toString()));
+                Intent i = new Intent(Detail1Activity.this, Detail2Activity.class);
+                startActivity(i);
+            }else{
+                builder=setOkNotificationDialogBuilder();
+                AlertDialog dialog=builder.create();
+                dialog.show();
+            }
         }
         if(id==R.id.deleteDetail1){
             pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
@@ -174,5 +190,17 @@ public class Detail1Activity extends AppCompatActivity {
 
     public static void setIsEditModeOn(boolean isEditModeOn) {
         Detail1Activity.isEditModeOn = isEditModeOn;
+    }
+    private AlertDialog.Builder setOkNotificationDialogBuilder(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Detail1Activity.this);
+        builder.setMessage("To proceed all fields must be correctly filled")
+                .setCancelable(false)
+                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getApplicationContext(),"you choose ok action for alertbox",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+        return builder;
     }
 }
