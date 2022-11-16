@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project_final.R;
+import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.adapter.PizzaOrderAdapter;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
 import cat.uvic.m08.pol.sanejove.project_final.interfaces.ItemClickListener;

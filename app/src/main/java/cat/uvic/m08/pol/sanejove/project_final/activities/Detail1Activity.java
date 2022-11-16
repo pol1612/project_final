@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project_final.R;
+import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
 import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingletone;
 
