@@ -3,7 +3,17 @@ package cat.uvic.m08.pol.sanejove.project_final.entities;
 import java.io.Serializable;
 
 public class PizzaOrder implements Serializable {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     //detail1 attributes
+    private int id;
     private float price;//
     private String clientsName;//
     private String deliveryCode;//
