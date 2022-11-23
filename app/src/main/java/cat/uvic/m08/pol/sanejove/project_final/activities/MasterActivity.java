@@ -34,6 +34,7 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        AppSingleton.getInstance().setAppContext(this);
         AppSingleton.getInstance().setPizzOrderArrayToMySQLDataBase();
 
         PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingleton.getInstance().getPizzaOrderArrayList(), this);

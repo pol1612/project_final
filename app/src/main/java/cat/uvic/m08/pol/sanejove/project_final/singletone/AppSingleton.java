@@ -62,12 +62,18 @@ public class AppSingleton extends AppCompatActivity {
     }
 
     public  void setPizzOrderArrayToMySQLDataBase(){
+
         new ExecuteMySQLCommand().execute();
         System.out.println("jsonData from table in database in server: \n"+jsonDataFromMySQLDataBase);
-        jsonDataFromMySQLDataBase="[]";
-        Type userListType = new TypeToken<ArrayList<PizzaOrder>>(){}.getType();
-        pizzaOrderArrayList = new Gson().fromJson(jsonDataFromMySQLDataBase, userListType);
-
+        if(!internalFileExists("arrayListData.json")){
+            this.pizzaOrderArrayList = new ArrayList<>();
+            String jsonData=new Gson().toJson(pizzaOrderArrayList);
+            writeToInternalFile("arrayListData.json",jsonData);
+        }else{
+            String jsonData=readFromInternalFile("arrayListData.json");
+            Type userListType = new TypeToken<ArrayList<PizzaOrder>>(){}.getType();
+            pizzaOrderArrayList = new Gson().fromJson(jsonData, userListType);
+        }
     }
     public void updatePizzaOrderArrayListItem(){
         pizzaOrderArrayList.set(currentPosition,pizzaOrder);

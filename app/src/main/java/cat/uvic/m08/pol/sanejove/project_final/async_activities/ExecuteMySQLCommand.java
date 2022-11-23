@@ -56,6 +56,7 @@ public class ExecuteMySQLCommand extends AsyncTask<Void,Void,String> {
             return pizzaOrdersJsonStr;
         }catch (IOException e){
             Log.e("PlaceholderFragment", "Error ", e);
+            System.out.println(e.getMessage());
             return null;
         }finally {
             if(urlConnection!=null){
@@ -73,10 +74,11 @@ public class ExecuteMySQLCommand extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        if(!s.isEmpty()){
+        if(s!=null){
             AppSingleton.getInstance().setJsonDataFromMySQLDataBase(s);
             System.out.println("setted jsonDataFromMySQLDataBase");
         }
+        System.out.println("not setted jsonDataFromMySQLDataBase");
 
 
     }
