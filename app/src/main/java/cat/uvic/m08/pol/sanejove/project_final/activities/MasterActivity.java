@@ -34,8 +34,7 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        AppSingleton.getInstance().setAppContext(this);
-        AppSingleton.getInstance().setPizzOrderArrayListToJSONFile();
+        AppSingleton.getInstance().setPizzOrderArrayToMySQLDataBase();
 
         PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingleton.getInstance().getPizzaOrderArrayList(), this);
         AppSingleton.getInstance().setPizzaOrderAdapter(pizzaOrderAdapter);
@@ -67,7 +66,6 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
         super.onResume();
         AppSingleton.getInstance().getPizzaOrderAdapter().notifyDataSetChanged();
         /**/
-        //TODO implement ADD,UPDATE,DELETE from Singleton to save
     }
 
     @Override

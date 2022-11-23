@@ -1,9 +1,11 @@
 package cat.uvic.m08.pol.sanejove.project_final.singletone;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import cat.uvic.m08.pol.sanejove.project_final.activities.async.FetchPizzaOrdersData;
 import cat.uvic.m08.pol.sanejove.project_final.adapter.PizzaOrderAdapter;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
 
@@ -15,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 
 
 public class AppSingleton extends AppCompatActivity {
@@ -40,30 +43,26 @@ public class AppSingleton extends AppCompatActivity {
         pizzaOrder=new PizzaOrder();
     }
 
-    public void setPizzOrderArrayListToJSONFile(){
-        if(!internalFileExists("arrayListData.json")){
-            this.pizzaOrderArrayList = new ArrayList<>();
-            String jsonData=new Gson().toJson(pizzaOrderArrayList);
-            writeToInternalFile("arrayListData.json",jsonData);
-        }else{
-            String jsonData=readFromInternalFile("arrayListData.json");
+    public  void setPizzOrderArrayToMySQLDataBase(){
+            AsyncTask fetchPizzaOrdersData=new FetchPizzaOrdersData().execute();
+            String jsonData="";
             Type userListType = new TypeToken<ArrayList<PizzaOrder>>(){}.getType();
             pizzaOrderArrayList = new Gson().fromJson(jsonData, userListType);
-        }
+
     }
     public void updatePizzaOrderArrayListItem(){
         pizzaOrderArrayList.set(currentPosition,pizzaOrder);
-        writeListToJSONFile();
+
 
     }
     public void deleteFromPizzaOrderArrayListItem(){
         pizzaOrderArrayList.remove(currentPosition);
-        writeListToJSONFile();
+
 
     }
     public void saveToPizzaOrderArrayListItem(){
         pizzaOrderArrayList.add(pizzaOrder);
-        writeListToJSONFile();
+
     }
     public void writeListToJSONFile(){
         String jsonData=new Gson().toJson(pizzaOrderArrayList);

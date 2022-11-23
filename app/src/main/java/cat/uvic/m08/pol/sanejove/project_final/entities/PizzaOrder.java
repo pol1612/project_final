@@ -4,26 +4,26 @@ import java.io.Serializable;
 
 public class PizzaOrder implements Serializable {
     //detail1 attributes
-    private float price;
-    private String clientsName;
-    private String deliveryCode;
-    private String deliveryDate;
-    private String destination;
-    private boolean hasBeenDelivered;
-    private int size;
+    private float price;//
+    private String clientsName;//
+    private String deliveryCode;//
+    private String deliveryDate;//
+    private String destination;//
+    private boolean hasBeenDelivered;//
+    private int size;//
     //detail2 attributes
-    private boolean baseOfFlour;
-    private boolean hasSpicyOil;
-    private boolean hasTomatoSauce;
-    private boolean hasMozzarella;
-    private boolean hasGouda;
-    private boolean hasRoquefort;
-    private boolean hasSwissCheese;
-    private boolean hasHam;
-    private boolean hasBacon;
-    private boolean hasMincedMeat;
-    private boolean hasOregano;
-    private boolean hasBlackPepper;
+    private boolean baseOfFlour;//
+    private boolean hasSpicyOil;//
+    private boolean hasTomatoSauce;//
+    private boolean hasMozzarella;//
+    private boolean hasGouda;//
+    private boolean hasRoquefort;//
+    private boolean hasSwissCheese;//
+    private boolean hasHam;//
+    private boolean hasBacon;//
+    private boolean hasMincedMeat;//
+    private boolean hasOregano;//
+    private boolean hasBlackPepper;//
 
 
     public PizzaOrder() {
