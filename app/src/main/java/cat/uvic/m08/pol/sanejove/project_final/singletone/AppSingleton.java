@@ -62,8 +62,8 @@ public class AppSingleton extends AppCompatActivity {
     }
 
     public  void setPizzOrderArrayToMySQLDataBase(){
-
-        new ExecuteMySQLCommand().execute();
+        String url="https://puntjif.com/teknos/gateway.php?sql=SELECT * FROM Pizza_Order;";
+        new ExecuteMySQLCommand().execute(url,this);
         System.out.println("jsonData from table in database in server: \n"+jsonDataFromMySQLDataBase);
         if(!internalFileExists("arrayListData.json")){
             this.pizzaOrderArrayList = new ArrayList<>();

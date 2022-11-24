@@ -12,21 +12,18 @@ import java.net.URL;
 
 import cat.uvic.m08.pol.sanejove.project_final.singletone.AppSingleton;
 
-public class ExecuteMySQLCommand extends AsyncTask<Void,Void,String> {
-    private String sql;
-    public ExecuteMySQLCommand(){
-        super();
-    }
+public class ExecuteMySQLCommand extends AsyncTask<Object,Void,String> {
+    private AppSingleton caller;
     @Override
-    protected String doInBackground(Void... voids) {
+    protected String doInBackground(Object... params) {
         System.out.println("started doInBackground");
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String pizzaOrdersJsonStr = null;
-        String sql="SELECT * FROM Pizza_Order;";
+        caller=(AppSingleton) params[1];
         try{
 
-            URL url=new URL("https://puntjif.com/teknos/gateway.php?sql="+sql);
+            URL url=new URL((String) params[0]);
             urlConnection=(HttpURLConnection) url.openConnection();
             if(urlConnection==null){
                 System.out.println("url connection null");
