@@ -124,7 +124,7 @@ public class Detail1Activity extends AppCompatActivity {
             }
         }
         if(id==R.id.deleteDetail1){
-            pizzaOrderArrayList.remove(pizzaOrderArrayListPosition);
+            AppSingleton.getInstance().deleteFromPizzaOrderArrayListItem();
             finish();
         }
         if(id==R.id.editDetail1){

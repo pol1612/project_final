@@ -62,6 +62,7 @@ public class AppSingleton extends AppCompatActivity {
         if(!internalFileExists("arrayListData.json")){
             createJSONFile();
         }else{
+            System.out.println("works?");
             loadDataFromJSONFile();
         }
     }
@@ -80,17 +81,18 @@ public class AppSingleton extends AppCompatActivity {
 
     public void updatePizzaOrderArrayListItem(){
         pizzaOrderArrayList.set(currentPosition,pizzaOrder);
+        writeListToJSONFile();
 
 
     }
     public void deleteFromPizzaOrderArrayListItem(){
         pizzaOrderArrayList.remove(currentPosition);
-
+        writeListToJSONFile();
 
     }
     public void saveToPizzaOrderArrayListItem(){
         pizzaOrderArrayList.add(pizzaOrder);
-
+        writeListToJSONFile();
     }
     public void writeListToJSONFile(){
         String jsonData=new Gson().toJson(pizzaOrderArrayList);
