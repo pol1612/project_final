@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-
 import cat.uvic.m08.pol.sanejove.project_final.R;
 import cat.uvic.m08.pol.sanejove.project_final.adapter.PizzaOrderAdapter;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
@@ -35,7 +33,8 @@ public class MasterActivity extends AppCompatActivity implements ItemClickListen
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         AppSingleton.getInstance().setAppContext(this);
-        AppSingleton.getInstance().setPizzOrderArrayToMySQLDataBase();
+        AppSingleton.getInstance().loadDataFromCloud();
+        AppSingleton.getInstance().loadDataFromLocal();
 
         PizzaOrderAdapter pizzaOrderAdapter=new PizzaOrderAdapter(AppSingleton.getInstance().getPizzaOrderArrayList(), this);
         AppSingleton.getInstance().setPizzaOrderAdapter(pizzaOrderAdapter);

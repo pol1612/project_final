@@ -1,8 +1,6 @@
 package cat.uvic.m08.pol.sanejove.project_final.singletone;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,16 +8,10 @@ import cat.uvic.m08.pol.sanejove.project_final.adapter.PizzaOrderAdapter;
 import cat.uvic.m08.pol.sanejove.project_final.async_activities.ExecuteMySQLCommand;
 import cat.uvic.m08.pol.sanejove.project_final.entities.PizzaOrder;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import com.google.gson.Gson;
@@ -61,20 +53,31 @@ public class AppSingleton extends AppCompatActivity {
         pizzaOrder=new PizzaOrder();
     }
 
-    public  void setPizzOrderArrayToMySQLDataBase(){
+    public  void loadDataFromCloud(){
         String url="https://puntjif.com/teknos/gateway.php?sql=SELECT * FROM Pizza_Order;";
         new ExecuteMySQLCommand().execute(url,this);
         System.out.println("jsonData from table in database in server: \n"+jsonDataFromMySQLDataBase);
+    }
+    public void loadDataFromLocal(){
         if(!internalFileExists("arrayListData.json")){
-            this.pizzaOrderArrayList = new ArrayList<>();
-            String jsonData=new Gson().toJson(pizzaOrderArrayList);
-            writeToInternalFile("arrayListData.json",jsonData);
+            createJSONFile();
         }else{
-            String jsonData=readFromInternalFile("arrayListData.json");
-            Type userListType = new TypeToken<ArrayList<PizzaOrder>>(){}.getType();
-            pizzaOrderArrayList = new Gson().fromJson(jsonData, userListType);
+            loadDataFromJSONFile();
         }
     }
+
+    private void loadDataFromJSONFile() {
+        String jsonData=readFromInternalFile("arrayListData.json");
+        Type userListType = new TypeToken<ArrayList<PizzaOrder>>(){}.getType();
+        pizzaOrderArrayList = new Gson().fromJson(jsonData, userListType);
+    }
+
+    private void createJSONFile() {
+        this.pizzaOrderArrayList = new ArrayList<>();
+        String jsonData=new Gson().toJson(pizzaOrderArrayList);
+        writeToInternalFile("arrayListData.json",jsonData);
+    }
+
     public void updatePizzaOrderArrayListItem(){
         pizzaOrderArrayList.set(currentPosition,pizzaOrder);
 
